@@ -3,31 +3,33 @@ package main
 import (
 	"syscall/js"
 	"fmt"
+	"github.com/endeveit/guesslanguage"
 )
 
-func add(this js.Value, i []js.Value) interface{} {
-	output := js.ValueOf(i[0].Int() + i[1].Int())
-	js.Global().Set("output", output)
-	fmt.Println(output.String())
+func greet(this js.Value, i []js.Value) interface{} {
+	fmt.Println(i)
+	output := "Hello, " + i[0].String()
 	return output
 }
 
-func subtract(this js.Value, i []js.Value) interface{} {
-	output := js.ValueOf(i[0].Int() - i[1].Int())
-	js.Global().Set("output", output)
-	fmt.Println(output.String())
-	return output
+func whatLang(this js.Value, i []js.Value) interface{} {
+	fmt.Println(i[0].String())
+	lang, err := guesslanguage.Guess(i[0].String())
+	if err != nil {
+		fmt.Printf("uh-oh: %w\n", err)
+	}
+	return lang
 }
 
 func registerCallbacks() {
-	js.Global().Set("add", js.FuncOf(add))
-	js.Global().Set("subtract", js.FuncOf(subtract))
+	js.Global().Set("greet", js.FuncOf(greet))
+	js.Global().Set("whatlang", js.FuncOf(whatLang))
 }
 
 func main() {
 	c := make(chan struct{}, 0)
 
-	fmt.Println("WASM Go Initialized")
+	fmt.Println("WASM hi Go Initialized")
 	// register functions
 	registerCallbacks()
 	// we listen on a channel that's never used to

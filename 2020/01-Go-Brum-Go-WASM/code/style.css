@@ -1,0 +1,43 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  background: #333;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+}
+
+body > * {
+  margin-top: 10px;
+}
+
+input {
+  width: 50%;
+  max-width: 500px;
+  font-size: 2rem;
+}
+
+button {
+  font-size: 2rem;
+}
+
+/* Credit to https://codepen.io/nickgeorgiou/pen/OpmyjG */
+.output-outer {
+  font-family: Arial, sans-serif;
+  font-size: 4em;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.output-outer {
+  font-family: Impact, sans-serif;
+  color: #24c0fd;
+  -webkit-text-stroke: 0.01em #0000aa;
+  filter: progid:DXImageTransform.Microsoft.Glow(Color=#0000aa,Strength=1);
+  text-shadow: 0.13em -0.13em 0px #0000aa;
+  letter-spacing: -0.05em;
+}

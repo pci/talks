@@ -13,24 +13,13 @@
     <br/>
     <div class="output-outer"><span id="output"></span></div>
 
-    <script src="wasm_exec.js"></script>
     <script>
       const $ = document.querySelector.bind(document);
 
       $("#run").addEventListener("click", () => {
         const x = $("#input").value;
-        $("#output").textContent = whatlang(x);
+        $("#output").textContent = dosomething(x);
       });
-
-      const go = new Go();
-      let mod, inst;
-      WebAssembly.instantiateStreaming(fetch("lib.wasm"), go.importObject).then(
-        async result => {
-          mod = result.module;
-          inst = result.instance;
-          await go.run(inst);
-        }
-      );
     </script>
   </body>
 </html>
