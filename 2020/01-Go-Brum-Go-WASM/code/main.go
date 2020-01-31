@@ -14,10 +14,7 @@ func greet(this js.Value, i []js.Value) interface{} {
 
 func whatLang(this js.Value, i []js.Value) interface{} {
 	fmt.Println(i[0].String())
-	lang, err := guesslanguage.Guess(i[0].String())
-	if err != nil {
-		fmt.Printf("uh-oh: %w\n", err)
-	}
+	lang := guesslanguage.GuessName(i[0].String())
 	return lang
 }
 
